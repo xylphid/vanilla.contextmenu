@@ -1,0 +1,9 @@
+@CHARSET "UTF-8";
+
+#vanilla-ctxm [class^=icon-] {
+    min-height: 18px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* Add icons class here */

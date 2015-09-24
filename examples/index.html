@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+        <script src="https://rawgithub.com/xylphid/vanilla/master/vanilla.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="../vanilla.contextmenu.js" type="text/javascript" charset="utf-8"></script>
+        <link rel="stylesheet" href="../vanilla.contextmenu.css" type="text/css" media="screen" />
+        <style type="text/css">
+        @import url(http://fonts.googleapis.com/css?family=Roboto:100,300);
+        body {
+            box-shadow:0px 0px 5px #000;
+            display:flex;
+            flex-direction:column;
+            font-family:Roboto, Arial, sans-sherif;
+            font-size:16px;
+            font-weight:300;
+            margin:0 auto;
+            padding:10px 20px;
+            width:1000px;
+        }
+        h1, h2 {
+            color:#6f3e92;
+            font-size:48px;
+            font-weight:normal;
+        }
+        h2 {
+            font-size:30px;
+            margin-left:20px;
+        }
+        pre {
+            box-shadow: 0px 0px 2px #000;
+            background-color:#F0F0F0;
+        }
+        a {
+            cursor:pointer;
+            text-decoration:none;
+            color:#6f3e92;
+            transition:all 200ms ease;
+        }
+        a:hover {
+            text-shadow: 2px 2px 2px rgba(0,0,0,0.333);
+        }
+        body > div[id^=example] .highlight { background:yellow; }
+        div.example a { padding:5px; }
+        .highlight {
+            background-color:rgba(0,0,0,0.04);
+            border-radius:3px;
+            padding:0 2px;
+        }
+
+        /* Context menu icons */
+        #vanilla-ctxm .icon-highlight {
+            background-image:url(icon-highlight.png);
+        }
+        #vanilla-ctxm .icon-delete {
+            background-image:url(icon-delete.png);
+        }
+        </style>
+    </head>
+    <body>
+        <h1>Vanilla context menu</h1>
+
+        <h2>Open and close modal with link</h2>
+        <!-- Single image automatic -->
+        <p class="tutorial">Add <span class="highlight">data-modal</span> attribute to your links and use <span class="highlight">href</span> attribute to define what should be opened in the modal.</p>
+        <div id="example-1" class="example">
+            <ul>
+                <li data-highlight="highlight">Right click me</li>
+                <li>Right click me</li>
+                <li data-highlight="highlight">Right click me</li>
+                <li>Right click me</li>
+            </ul>
+        </div>
+        <script type="text/javascript">
+        vanilla.ctxm( '#example-1 li', {
+            items: {
+                highlight: { // Highlight the clicked image
+                    title:'Highlight',
+                    icon:'this.data-highlight',
+                    callback: function() {
+                        var target = vanilla.ctxm.getTarget();
+                        target.toggleClass('highlight')
+                            .attr('data-highlight', 'highlight');
+                    }
+                },
+                delete: { // Delete the clicked item
+                    title:'Delete',
+                    icon:'delete',
+                    callback: function() {
+                        var target = vanilla.ctxm.getTarget();
+                        target.remove();
+                    }
+                }
+            }
+        } );
+        </script>
+        <pre><code>
+    &lt;div id=&quot;example-1&quot; class=&quot;example&quot;&gt;
+        &lt;ul&gt;
+            &lt;li&gt;Right click me&lt;/li&gt;
+            &lt;li&gt;Right click me&lt;/li&gt;
+            &lt;li&gt;Right click me&lt;/li&gt;
+            &lt;li&gt;Right click me&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;script type=&quot;text/javascript&quot;&gt;
+    vanilla.ctxm( '#example-1 li', {
+        items: {
+            highlight: { // Highlight the clicked image
+                title:'Highlight',
+                icon:'this.data-highlight',
+                callback: function() {
+                    var target = vanilla.ctxm.getTarget();
+                    target.toggleClass('highlight')
+                        .attr('data-highlight', 'highlight');;
+                }
+            },
+            delete: { // Delete the clicked item
+                title:'Delete',
+                icon:'delete',
+                callback: function() {
+                    var target = vanilla.ctxm.getTarget();
+                    target.remove();
+                }
+            }
+        }
+    } );
+    &lt;/script&gt;
+        </code></pre>
+
+        <h2>Options</h2>
+
+        <pre><code>
+    vanilla.ctxm.defaults = {
+        background: '#FFF',             // Background color
+        border: '#CDCDCD',              // Border color
+        fontSize: '14px',               // Font size
+        headerText: 'Context menu',     // Menu header title
+        iconPosition: 0,                // Icon position [0: left, 1: right]
+        opacity: 0.5,                   // Overlay opacity
+        overlay: '#000',                // Overlay color
+        width: '200px'                  // Menu width
+    }
+        </code></pre>
+
+        <script type="text/javascript">
+        // Set background color
+        singles = vanilla('[id^=example]');
+        singles.each(function( el ) {
+            el.css('background', '#FBFBFB');
+        });
+        </script>
+    </body>
+</html>
