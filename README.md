@@ -14,7 +14,7 @@ Include [vanilla](https://github.com/xylphid/vanilla) and `vanilla.contextmenu.m
 <script src="vanilla.contextmenu.min.js" type="text/javascript" charset="utf-8" />
 ```
 
-Include the modal requirements and `vanilla.modal.css` default style :
+Include the modal requirements and `vanilla.ctxm.css` default style :
 ```html
 <link rel="stylesheet" href="vanilla.ctxm.css" type="text/css" media="screen" />
 ```
